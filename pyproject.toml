@@ -8,6 +8,7 @@ authors = ["dwanneruchi <davidwanner11@gmail.com>"]
 python = "^3.9"
 ipykernel = "^6.2.0"
 jupyter = "^1.0.0"
+mypy = "^0.910"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
