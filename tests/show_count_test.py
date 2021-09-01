@@ -1,6 +1,6 @@
 from pytest import mark
 
-from fluent_python.show_count import show_count, show_count_plural, zip_replace
+from fluent_python.show_count import show_count, show_count_plural, zip_replace, our_mode
 
 # this is a pretty cool way to do multiple tests, shown below
 @mark.parametrize('qty, expected', [
@@ -26,3 +26,13 @@ expected2 = 'm4d sk1ll3d n00b p0wn3d l33t'
 def test_replace():
     got = zip_replace(text, l33t)
     assert got == expected2
+
+
+# this is a pretty cool way to do multiple tests, shown below
+@mark.parametrize('input, expected', [
+    ([1,2,3,4,4,4,4,5,8,8], 4),
+    (('a','a','a', 'v', 'd','e', 'e'), 'a'),
+])
+def test_our_mode(input, expected):
+    got = our_mode(input)
+    assert got == expected

@@ -1,7 +1,7 @@
 from __future__ import annotations
-from typing import Optional
+from typing import Optional, TypeVar
 from collections.abc import Iterable
-
+from collections import Counter
 
 def show_count(count: int, word: str) -> str:
     """Passes mypy tests by clearly defining argument and return types"""
@@ -37,3 +37,16 @@ def zip_replace(text: str, changes: Iterable[FromTo]) -> str:
     for from_, to in changes:
         text = text.replace(from_, to)
     return text
+
+# An example using generic types, which I ran across in Java!
+# Generic types will allow us to ensure our return matches the type of the argument input
+T = TypeVar('T')
+
+def our_mode(data: Iterable[T]) -> T:
+    """Able to take a sequence of any type and guarantee we output the same data type (representing mode)
+    This is pretty cool - the pytest shows how we can pass in a tuple/list/etc, and varying data types but still things work
+    """
+    pairs = Counter(data).most_common(1)
+    if len(pairs) == 0:
+        raise ValueError('no mode for empty data')
+    return pairs[0][0]
