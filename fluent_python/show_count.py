@@ -1,4 +1,7 @@
+from __future__ import annotations
 from typing import Optional
+from collections.abc import Iterable
+
 
 def show_count(count: int, word: str) -> str:
     """Passes mypy tests by clearly defining argument and return types"""
@@ -20,3 +23,17 @@ def show_count_plural(count: int, singular: str, plural: Optional[str] = None) -
     if not plural:
         plural = singular + 's'
     return f'{count_str} {plural}'
+
+
+def tokenize(text: str) -> list[str]:
+    """Example of using a collection, in this case output will be a list where each element is a string"""
+    return text.upper().split()
+
+# an example using iterable instead of list, which is more flexible
+FromTo = tuple[str, str] # we create an alias which we can reference further on
+
+def zip_replace(text: str, changes: Iterable[FromTo]) -> str:
+    """By using Iterable instead of list we can accept any iterable (tuple, list, generator - i think)"""
+    for from_, to in changes:
+        text = text.replace(from_, to)
+    return text
